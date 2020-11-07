@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export default props => {
 
-    const lista = props.list
+    const lista = props.list;
 
     return (
         <table className="table mt-4">
