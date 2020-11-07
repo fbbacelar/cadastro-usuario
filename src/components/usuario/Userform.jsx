@@ -8,11 +8,11 @@ export default props =>
                 <div className="form-group">
                     <label>Nome</label>
                     <input type="text"
-                        name="nome"
-                        id="nome"
+                        name="name"
+                        id="name"
                         className="form-control"
                         autoComplete='off'
-                        value={props.nome}
+                        value={props.name}
                         onChange={e => props.updateField(e)}
                         onKeyPress={props.handleEnterPress}
                         placeholder='Digite o nome...' />

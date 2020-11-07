@@ -16,7 +16,7 @@ const baseUrl = 'http://localhost:8080/usuarios';
 
 const initialState = {
     usuario: {
-        nome: '',
+        name: '',
         email: '',
         //telefone: '',
         senha: ''
@@ -61,7 +61,7 @@ export default class UserCrud extends React.Component {
         const method = usuario.id ? 'put' : 'post';
         const url = usuario.id ? `${baseUrl}/${usuario.id}` : baseUrl;
 
-        if (usuario.nome === '' || usuario.email === '' || /*usuario.telefone === '' ||*/ usuario.senha === '') {
+        if (usuario.name === '' || usuario.email === '' || /*usuario.telefone === '' ||*/ usuario.senha === '') {
             NotificationManager.warning('Nome, e-mail e senha obrigatórios', 'Preencha os campos');
         } else {
             axios[method](url, usuario)
@@ -106,7 +106,7 @@ export default class UserCrud extends React.Component {
     render() {
         return (
             <Main {...headerProps}>
-                <Userform nome={this.state.usuario.nome}
+                <Userform name={this.state.usuario.name}
                     email={this.state.usuario.email}
                     //telefone={this.state.usuario.telefone}
                     senha={this.state.usuario.senha}
