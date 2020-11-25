@@ -11,7 +11,6 @@ export default props => {
                     <th>#</th>
                     <th>Nome</th>
                     <th>E-mail</th>
-                    {/* <th>Telefone</th> */}
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -22,7 +21,6 @@ export default props => {
                             <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            {/* <td>{user.telefone}</td> */}
                             <td>
                                 <button className="btn btn-warning" title='Editar' onClick={() => props.load(user)}>
                                     <i className="fa fa-pencil"></i>
