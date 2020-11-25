@@ -35,20 +35,6 @@ export default props =>
         </div>
 
         <div className="row">
-            {/* <div className="col-12 col-md-6">
-                <div className="form-group">
-                    <label>Telefone</label>
-                    <input type="text"
-                        name="telefone"
-                        id="telefone"
-                        className="form-control"
-                        autoComplete='off'
-                        value={props.telefone}
-                        onChange={e => props.updateField(e)}
-                        onKeyPress={props.handleEnterPress}
-                        placeholder='Digite o telefone...' />
-                </div>
-            </div> */}
             <div className="col-12 col-md-6">
                 <div className="form-group">
                     <label>Senha</label>
@@ -61,6 +47,22 @@ export default props =>
                         onChange={e => props.updateField(e)}
                         onKeyPress={props.handleEnterPress}
                         placeholder='Digite a senha...' />
+                </div>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-12 col-md-6">
+                <div className="form-group">
+                    <label>Confirmação de senha</label>
+                    <input type="password"
+                        name="confirmacaoSenha"
+                        id="confirmacaoSenha"
+                        className="form-control"
+                        autoComplete='off'
+                        value={props.confirmacaoSenha}
+                        onChange={e => props.updateField(e)}
+                        onKeyPress={props.handleEnterPress}
+                        placeholder='Digite a confirmação de senha...' />
                 </div>
             </div>
         </div>

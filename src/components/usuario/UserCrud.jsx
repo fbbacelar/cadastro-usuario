@@ -19,8 +19,8 @@ const initialState = {
         id: 0,
         name: '',
         email: '',
-        //telefone: '',
-        senha: ''
+        senha: '',
+        confirmacaoSenha: ''
     },
     list: []
 };
@@ -62,8 +62,10 @@ export default class UserCrud extends React.Component {
         const method = usuario.id ? 'put' : 'post';
         const url = usuario.id ? `${baseUrl}/${usuario.id}` : baseUrl;
 
-        if (usuario.name === '' || usuario.email === '' || usuario.senha === '') {
-            NotificationManager.warning('Nome, e-mail e senha obrigatórios', 'Preencha os campos');
+        if (usuario.name === '' || usuario.email === '' ||  usuario.senha === '' ||  usuario.confirmacaoSenha === '') {
+            NotificationManager.warning('Nome, e-mail, senha e confirmação obrigatórios', 'Preencha os campos')
+        }else if (usuario.confirmacaoSenha !== usuario.senha ) {
+            NotificationManager.warning('Senha e confirmação de senha diferentes', 'Preencha corretamente')
         } else {
             axios[method](url, usuario)
                 .then(response => {
@@ -111,6 +113,7 @@ export default class UserCrud extends React.Component {
                     email={this.state.usuario.email}
                     //telefone={this.state.usuario.telefone}
                     senha={this.state.usuario.senha}
+                    confirmacaoSenha={this.state.usuario.confirmacaoSenha}
                     clear={this.clear}
                     save={this.save}
                     updateField={this.updateField}
