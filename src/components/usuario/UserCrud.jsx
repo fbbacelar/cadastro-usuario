@@ -1,10 +1,10 @@
-import React from 'react';
-import Main from '../template/Main';
-import Userform from './Userform';
-import UserTable from './UserTable';
-import axios from 'axios';
+import React from 'react'
+import Main from '../template/Main'
+import Userform from './Userform'
+import UserTable from './UserTable'
+import axios from 'axios'
 
-import { /*NotificationContainer,*/ NotificationManager } from 'react-notifications';
+import { /*NotificationContainer,*/ NotificationManager } from 'react-notifications'
 
 const headerProps = {
     icon: 'users',
@@ -12,7 +12,8 @@ const headerProps = {
     subtitle: 'Cadastro de Usuários: Incluir, Listar, Alterar e Excluir'
 };
 
-const baseUrl = 'http://localhost:8080/usuarios';
+// const baseUrl = 'http://45.6.88.254:8080/usuarios'
+const baseUrl = 'http://localhost:8080/usuarios'
 
 const initialState = {
     usuario: {
@@ -22,23 +23,39 @@ const initialState = {
         senha: '',
         confirmacaoSenha: ''
     },
-    list: []
+    list: [],
+    showList: true,
+    showForm: false
 };
 
 export default class UserCrud extends React.Component {
 
     constructor() {
-        super();
+        super()
 
-        this.state = { ...initialState };
+        this.state = { ...initialState }
 
-        this.clear = this.clear.bind(this);
-        this.save = this.save.bind(this);
-        this.getUpdatedList = this.getUpdatedList.bind(this);
-        this.updateField = this.updateField.bind(this);
-        this.load = this.load.bind(this);
-        this.remove = this.remove.bind(this);
-        this.handleEnterPress = this.handleEnterPress.bind(this);
+        this.clear = this.clear.bind(this)
+        this.save = this.save.bind(this)
+        this.getUpdatedList = this.getUpdatedList.bind(this)
+        this.updateField = this.updateField.bind(this)
+        this.load = this.load.bind(this)
+        this.remove = this.remove.bind(this)
+        this.showForm = this.showForm.bind(this)
+        this.add = this.add.bind(this)
+        this.handleEnterPress = this.handleEnterPress.bind(this)
+    }
+
+    add(){
+        this.clear()
+        this.showForm(true)
+    }
+
+    showForm(value){
+        this.setState({
+            showForm: value,
+            showList: !value
+        })
     }
 
     componentWillMount() {
@@ -55,6 +72,7 @@ export default class UserCrud extends React.Component {
 
     clear() {
         this.setState({ usuario: initialState.usuario });
+        this.showForm(false)
     }
 
     save() {
@@ -75,7 +93,8 @@ export default class UserCrud extends React.Component {
                         NotificationManager.success('Usuário criado com sucesso', 'Criar Usuário');
                     else
                         NotificationManager.success('Usuário alterado com sucesso', 'Editar Usuário');
-                });
+                })
+            this.showForm(false)
         }
 
     }
@@ -95,6 +114,7 @@ export default class UserCrud extends React.Component {
 
     load(usuario) {
         this.setState({ usuario });
+        this.showForm(true)
     }
 
     remove(usuario) {
@@ -109,20 +129,26 @@ export default class UserCrud extends React.Component {
     render() {
         return (
             <Main {...headerProps}>
+                {this.state.showForm
+                &&
                 <Userform name={this.state.usuario.name}
                     email={this.state.usuario.email}
-                    //telefone={this.state.usuario.telefone}
                     senha={this.state.usuario.senha}
                     confirmacaoSenha={this.state.usuario.confirmacaoSenha}
                     clear={this.clear}
                     save={this.save}
                     updateField={this.updateField}
                     handleEnterPress={this.handleEnterPress}
-                />
+                    /> 
+                }
+                {this.state.showList
+                &&
                 <UserTable list={this.state.list}
                     load={this.load}
                     remove={this.remove}
-                />
+                    add={this.add}
+                /> 
+                }
             </Main>
         )
     }

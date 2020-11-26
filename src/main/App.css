@@ -93,7 +93,7 @@ footer.footer {
 @media(max-width: 870px) {
     #btn-excluir {
         margin-left: .1rem !important;
-        margin-top: .5rem !important;
+        /* margin-top: .5rem !important; */
     }
 }
 
